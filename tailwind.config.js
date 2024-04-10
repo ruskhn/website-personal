@@ -29,6 +29,9 @@ module.exports = {
           800: "#1e40af",
           900: "#1e3a8a",
         },
+        green: {
+          100: "#BFFF10",
+        },
       },
       fontFamily: {
         body: [
@@ -74,6 +77,9 @@ module.exports = {
         4: "4px",
         6: "6px",
         8: "8px",
+      },
+      borderRadius: {
+        def: "30px",
       },
       minHeight: {
         ...defaultTheme.height,

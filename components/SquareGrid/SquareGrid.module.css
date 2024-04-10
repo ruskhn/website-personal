@@ -1,0 +1,16 @@
+.glowingEffectContainer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px; /* Control the size of the glow effect */
+  height: 900px; /* Control the size of the glow effect */
+  background: radial-gradient(circle, rgb(191 255 16 / 16%) 0%, transparent 62%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.glowingEffectContainer {
+  position: relative;
+}
