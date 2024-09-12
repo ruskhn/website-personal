@@ -18,36 +18,45 @@ export const MyTimeline = () => {
       <Timeline position="alternate">
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot variant="outlined" />
+            <TimelineDot variant="outlined" color="primary" />
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent>
-            <h1>Data</h1>
-            <p>Text</p>
+            <h1>October 2019 - Joined Portectron</h1>
+            <p>Software Engineer</p>
           </TimelineContent>
         </TimelineItem>
 
         <TimelineItem>
           <TimelineSeparator>
-            <TimelineDot variant="outlined" color="primary" />
+            <TimelineDot variant="outlined" />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>Code</TimelineContent>
-        </TimelineItem>
-
-        <TimelineItem>
-          <TimelineSeparator>
-            <TimelineDot variant="outlined" color="secondary" />
-            <TimelineConnector />
-          </TimelineSeparator>
-          <TimelineContent>Sleep</TimelineContent>
+          <TimelineContent>
+            <h1>Joined Twisted-Rope - May 2020</h1>
+            <p>Software Engineer</p>
+          </TimelineContent>
         </TimelineItem>
 
         <TimelineItem>
           <TimelineSeparator>
             <TimelineDot variant="outlined" />
+            <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>Repeat</TimelineContent>
+          <TimelineContent>
+            <h1>May 2022 - Joined Stackline</h1>
+            <p>Software Engineer</p>
+          </TimelineContent>
+        </TimelineItem>
+
+        <TimelineItem>
+          <TimelineSeparator>
+            <TimelineDot variant="outlined" color="secondary" />
+          </TimelineSeparator>
+          <TimelineContent>
+            <h1>September 2024</h1>
+            <p>You are here!</p>
+          </TimelineContent>
         </TimelineItem>
       </Timeline>
     </div>

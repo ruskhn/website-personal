@@ -2,10 +2,17 @@ import { NextResponse } from "next/server"
 import type { NextRequest } from "next/server"
 
 export function middleware(request: NextRequest) {
-  // TODO: Feel free to remove this block
-  if (request.headers?.get("host")?.includes("next-enterprise.vercel.app")) {
-    return NextResponse.redirect("https://blazity.com/open-source/nextjs-enterprise-boilerplate", { status: 301 })
+  const { pathname } = request.nextUrl
+
+  // Check if pathname is not all lowercase
+  if (pathname !== pathname.toLowerCase()) {
+    const url = request.nextUrl.clone()
+    url.pathname = pathname.toLowerCase() // Convert to lowercase
+    return NextResponse.redirect(url)
   }
+
+  // Continue with the request if it's already lowercase
+  return NextResponse.next()
 }
 
 export const config = {

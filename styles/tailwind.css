@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.article {
+  @apply mb-20 flex flex-col gap-3 text-lg tracking-wide;
+}
+
+.article > h1 {
+  @apply text-center text-4xl tracking-tight;
+}
+
+.article > h2 {
+  @apply text-3xl tracking-tight;
+}
+
+.article > ol {
+  @apply mx-10 flex list-decimal flex-col gap-2;
+}
+
+.article > ul {
+  @apply mx-10 flex list-disc flex-col gap-2;
+}
+
+.article > pre {
+  @apply overflow-scroll bg-neutral-950 p-5 text-neutral-50;
+}
+
+.article > blockquote {
+  @apply border-l-2 border-neutral-600 border-opacity-40 pl-5 italic;
+}
+
+.article > p > img {
+  @apply mx-auto w-1/2;
+}
