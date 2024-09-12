@@ -5,12 +5,6 @@ import TimelineConnector from "@mui/lab/TimelineConnector"
 import TimelineContent from "@mui/lab/TimelineContent"
 import TimelineDot from "@mui/lab/TimelineDot"
 
-const timelineData = [
-  {
-    text: "",
-  },
-]
-
 export const MyTimeline = () => {
   return (
     <div className="pt-10">

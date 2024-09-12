@@ -5,8 +5,8 @@ const ResumeReader = async () => {
 
   return (
     <div>
-      {resume.map((item) => (
-        <article dangerouslySetInnerHTML={{ __html: item.contentHtml }} />
+      {resume.map((item, idx) => (
+        <article key={idx} dangerouslySetInnerHTML={{ __html: item.contentHtml }} />
       ))}
     </div>
   )

@@ -4,7 +4,7 @@ import * as React from "react"
 const Header = () => {
   return (
     <header className="absolute w-full bg-transparent p-4">
-      <div className="mx-auto flex max-w-6xl max-w-7xl items-center justify-between ">
+      <div className="mx-auto flex max-w-6xl items-center justify-between ">
         {/* Logo Section */}
         <div className="flex items-center">
           <a href="/" className="flex items-center text-xl font-bold text-slate-300">

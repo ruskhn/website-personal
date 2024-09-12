@@ -31,30 +31,6 @@ const BackgroundEffects: React.FC = () => {
   )
 }
 
-const PageHeader: React.FC<any> = ({ title }) => {
-  return (
-    <div className="pb-4 md:pb-8">
-      <h2 className="h2 bg-gradient-to-r from-slate-100/80 via-slate-200 to-slate-100/80 bg-clip-text pb-4 text-transparent">
-        {title}
-      </h2>
-    </div>
-  )
-}
-const PageContent: React.FC = () => {
-  return (
-    <div className="mx-auto max-w-6xl px-4 sm:px-6">
-      <div className="pb-12 pt-32 md:pb-20 md:pt-40">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-lg text-slate-300">{/* Content can be dynamic here */}</p>
-          <p className="text-lg text-slate-300">
-            <time dateTime="2024-08-24">Aug 24, 2024</time>
-          </p>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // bg-slate-900
   return (
@@ -67,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <section className="relative">
               <BackgroundEffects />
               <div style={{ marginBottom: 64 }} />
-              <div className="border-1 mx-auto max-w-5xl max-w-screen-lg border-white p-4 text-white">{children}</div>
+              <div className="border-1 mx-auto max-w-screen-lg border-white p-4 text-white">{children}</div>
             </section>
           </main>
         </div>
