@@ -13,7 +13,7 @@ const Header = () => {
         </div>
 
         {/* Navigation Links */}
-        <nav className="hidden space-x-6 md:flex">
+        <nav className="space-x-6 md:flex">
           {[
             {
               to: "/",
