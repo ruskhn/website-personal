@@ -1,6 +1,7 @@
 import { Metadata } from "next"
 import SquareGrid from "components/SquareGrid/SquareGrid"
 import { MyTimeline } from "components/MyTimeline/MyTimeline"
+import { Montserrat } from "@next/font/google"
 
 export const metadata: Metadata = {
   title: "Rus Walten Home Page",
@@ -25,7 +26,7 @@ export default function Web() {
 
 const Main: React.FC = () => {
   return (
-    <section className="border-1 mx-auto max-w-screen-lg border-white p-4 text-white">
+    <section className={`border-1 mx-auto max-w-screen-lg border-white p-4 text-white`}>
       <h5 className="mb-3 text-6xl">{`Hi I'm Rus`}</h5>
       <p className="mb-10 text-5xl text-green-100">Full Stack Engineer</p>
 

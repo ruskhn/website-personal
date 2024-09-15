@@ -1,3 +1,4 @@
+import { Divider } from "@mui/material"
 import Image from "next/image"
 
 const PROJECTS = [
@@ -5,39 +6,34 @@ const PROJECTS = [
     title: "MapTask",
     url: "maptask.ruslan.guru",
     description:
-      "This service enables users to pin tasks onto a map or any image, providing detailed context for each task and serving as an interactive dashboard. Users can track the progress of their tasks, manage their personal accounts, handle billing, and customize settings, making it a comprehensive tool for visual task management and organization.",
+      "MapTask is a versatile task management platform designed to cater to the unique needs of various industries by integrating geolocation with task coordination. Whether you are in retail, construction, oil and energy, transportation, or even government services, MapTask empowers your business to manage tasks more effectively, securely, and transparently.",
+    src: "/images/portfolio/p2.png",
   },
 ]
 
 const Portfolio = () => {
   return (
     <div>
-      {PROJECTS.map(({ title, description, url }, idx) => (
-        <div
-          key={title}
-          className="-[8px] flex w-full flex-col items-center rounded bg-[#1b0e1d] p-4 md:flex-row md:items-start"
-        >
-          {/* Image on the left */}
-          <div className="w-full md:w-1/3">
+      {PROJECTS.map(({ title, description, url, src }, idx) => (
+        <div key={title} className="flex h-screen w-full flex-col p-4">
+          {/* Header */}
+          <div className="flex items-center justify-center">
             <a target="_blank" href={`https://${url}`} rel="noopener noreferrer">
-              <Image
-                src="/images/portfolio/p1.png"
-                alt="Your image description"
-                width={500} // You can adjust the width and height as needed
-                height={500}
-                className="h-auto w-full"
-              />
+              <h1 className="font-sans text-4xl hover:text-white">{title} </h1>
             </a>
           </div>
 
-          {/* Text and description on the right */}
-          <div className="mt-4 w-full md:ml-4 md:mt-0 md:w-2/3">
-            <h2 className="text-xl font-semibold">
-              {title}
-              <span className="float-right">#{idx + 1}</span>
-            </h2>
-            <p className="mt-2">{description}</p>
-          </div>
+          {/* Map or Content Area */}
+          <Image
+            src={src}
+            alt="Your image description"
+            width={1900} // You can adjust the width and height as needed
+            height={916}
+            className="mt-4 h-auto w-full"
+          />
+
+          {/* Description Section */}
+          <div className="mt-4 text-left text-sm">{description}</div>
         </div>
       ))}
     </div>

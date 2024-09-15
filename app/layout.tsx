@@ -1,5 +1,6 @@
 import "styles/tailwind.css"
 import Header from "components/Header"
+import { Montserrat } from "@next/font/google"
 
 const BackgroundEffects: React.FC = () => {
   return (
@@ -31,19 +32,25 @@ const BackgroundEffects: React.FC = () => {
   )
 }
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["500"], // Specify the weights you want to use
+  variable: "--font-montserrat", // Optional: use a custom variable if needed
+})
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // bg-slate-900
   return (
     <html lang="en">
       {/* Main content */}
-      <body className="font-inter bg-slate-900 tracking-tight text-slate-100 antialiased">
+      <body className={`${montserrat.variable} bg-slate-900 font-sans tracking-tight text-slate-300 antialiased`}>
         <Header />
         <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
           <main className="grow">
             <section className="relative">
               <BackgroundEffects />
               <div style={{ marginBottom: 64 }} />
-              <div className="border-1 mx-auto max-w-screen-lg border-white p-4 text-white">{children}</div>
+              <div className="border-1 mx-auto max-w-screen-lg border-white p-4">{children}</div>
             </section>
           </main>
         </div>

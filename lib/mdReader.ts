@@ -22,7 +22,6 @@ export const getMdFile = async () => {
 
       const contentHtml = processedContent.toString()
 
-      console.log("contentHtml", contentHtml)
       return {
         id,
         title: matterResult.data.title,

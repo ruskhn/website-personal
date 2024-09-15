@@ -2729,6 +2729,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/font@npm:^14.2.11":
+  version: 14.2.11
+  resolution: "@next/font@npm:14.2.11"
+  peerDependencies:
+    next: "*"
+  checksum: 10c0/0c7a495fb681c31d16d364f4ac5a3205d766f8c0e49659abeff2d0a66735d390159975dac290583fff590acd59cc4ad0b61063b110bb193ac6f73bc476a01fea
+  languageName: node
+  linkType: hard
+
 "@next/swc-darwin-arm64@npm:14.2.11":
   version: 14.2.11
   resolution: "@next/swc-darwin-arm64@npm:14.2.11"
@@ -16027,6 +16036,7 @@ __metadata:
     "@mui/lab": "npm:^5.0.0-alpha.170"
     "@mui/material": "npm:^5.15.15"
     "@next/bundle-analyzer": "npm:^14.0.3"
+    "@next/font": "npm:^14.2.11"
     "@opentelemetry/api": "npm:1.7.0"
     "@opentelemetry/resources": "npm:1.18.1"
     "@opentelemetry/sdk-node": "npm:0.45.1"

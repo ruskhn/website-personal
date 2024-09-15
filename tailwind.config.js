@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const { pick, omit } = require("lodash")
 const colors = require("tailwindcss/colors")
 const defaultTheme = require("tailwindcss/defaultTheme")
 
@@ -34,41 +33,15 @@ module.exports = {
         },
       },
       fontFamily: {
-        body: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "system-ui",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "Noto Sans",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
-        ],
-        sans: [
-          "Inter",
-          "ui-sans-serif",
-          "system-ui",
-          "-apple-system",
-          "system-ui",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "Noto Sans",
-          "sans-serif",
-          "Apple Color Emoji",
-          "Segoe UI Emoji",
-          "Segoe UI Symbol",
-          "Noto Color Emoji",
-        ],
+        body: ["var(--font-montserrat)", "sans-serif"],
+        sans: ["var(--font-montserrat)", "sans-serif"],
       },
+      // fontSize: {
+      //   h1: ["3rem", { lineHeight: "1.2" }], // Equivalent to 48px
+      //   h2: ["2.5rem", { lineHeight: "1.3" }], // Equivalent to 40px
+      //   h3: ["2rem", { lineHeight: "1.4" }], // Equivalent to 32px
+      //   p: ["1.125rem", { lineHeight: "1.6" }], // Equivalent to 18px
+      // },
       borderWidth: {
         DEFAULT: "1px",
         0: "0",

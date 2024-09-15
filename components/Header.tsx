@@ -3,7 +3,7 @@ import * as React from "react"
 
 const Header = () => {
   return (
-    <header className="absolute w-full bg-transparent p-4">
+    <header className="absolute w-full bg-transparent p-4 font-sans">
       <div className="mx-auto flex max-w-6xl items-center justify-between ">
         {/* Logo Section */}
         <div className="flex items-center">
