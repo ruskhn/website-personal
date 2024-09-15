@@ -1,5 +1,4 @@
 import Image from "next/image"
-import Link from "next/link"
 
 const PROJECTS = [
   {
@@ -14,7 +13,10 @@ const Portfolio = () => {
   return (
     <div>
       {PROJECTS.map(({ title, description, url }, idx) => (
-        <div className="-[8px] flex w-full flex-col items-center rounded bg-[#1b0e1d] p-4 md:flex-row md:items-start">
+        <div
+          key={title}
+          className="-[8px] flex w-full flex-col items-center rounded bg-[#1b0e1d] p-4 md:flex-row md:items-start"
+        >
           {/* Image on the left */}
           <div className="w-full md:w-1/3">
             <a target="_blank" href={`https://${url}`} rel="noopener noreferrer">
