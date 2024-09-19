@@ -7,25 +7,36 @@ const infoBlocks = [
     text: "Completed projects",
   },
   {
-    title: "5+",
+    title: "5",
     subtitle: "",
     text: "Years of expertise",
   },
   {
-    title: "$80M+",
+    title: "$3M+",
     subtitle: "",
     text: "Revenue impact",
   },
+
   {
-    title: "2",
+    title: "$10K",
     subtitle: "",
-    text: "Teams built",
+    text: "Monthly savings from AWS migration",
+  },
+  {
+    title: "40+",
+    subtitle: "",
+    text: "Reusable components created",
+  },
+  {
+    title: "$60K",
+    subtitle: "",
+    text: "Operational cost savings",
   },
 ]
 
 const SquareGrid = () => {
   return (
-    <div className={`${styles.glowingEffectContainer} grid grid-cols-1 gap-4 pt-10 md:grid-cols-2`}>
+    <div className={`${styles.glowingEffectContainer} grid grid-cols-2 gap-4 pt-10 md:grid-cols-3`}>
       {infoBlocks.map(({ title, subtitle, text }) => (
         <div
           key={title}
@@ -33,7 +44,7 @@ const SquareGrid = () => {
           className="min-h-[180px] content-center rounded-def bg-[#111111] px-4 py-5 text-center"
         >
           <h1 className="mb-4 text-3xl md:text-5xl">{title}</h1>
-          <h2 className="mb-2 text-xl md:text-2xl">{subtitle}</h2>
+          <h2 className="md:text-md mb-2 text-base">{subtitle}</h2>
           <p className="text-sm md:text-base">{text}</p>
         </div>
       ))}

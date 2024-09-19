@@ -8,7 +8,7 @@ const Header = () => {
         {/* Logo Section */}
         <div className="flex items-center">
           <a href="/" className="flex items-center text-xl font-bold text-slate-300">
-            <img src="/images/rk-500.png" alt="Stack Logo" className="mr-2 h-8 w-8" />
+            <img src="/images/logo.svg" alt="Stack Logo" className="mr-2 h-8 w-8" />
           </a>
         </div>
 
@@ -48,7 +48,7 @@ const Header = () => {
           </a>
 
           <a
-            href="https://github.com/ruskhn"
+            href="https://www.linkedin.com/in/ruskhn/"
             className="flex items-center rounded-md px-2 py-1 text-slate-300 hover:bg-gray-700"
           >
             <svg

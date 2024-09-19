@@ -1,4 +1,3 @@
-import { Divider } from "@mui/material"
 import Image from "next/image"
 
 const PROJECTS = [
@@ -18,8 +17,23 @@ const Portfolio = () => {
         <div key={title} className="flex h-screen w-full flex-col p-4">
           {/* Header */}
           <div className="flex items-center justify-center">
-            <a target="_blank" href={`https://${url}`} rel="noopener noreferrer">
-              <h1 className="font-sans text-4xl hover:text-white">{title} </h1>
+            <a
+              className="group flex items-center gap-2"
+              target="_blank"
+              href={`https://${url}`}
+              rel="noopener noreferrer"
+            >
+              <h1 className="font-sans text-4xl group-hover:text-white">{title}</h1>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
+                <path
+                  d="M23.75 15L6.25 15M23.75 15L16.25 22.5M23.75 15L16.25 7.5"
+                  stroke="#cbd5e1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  className="group-hover:stroke-white"
+                />
+              </svg>
             </a>
           </div>
 
