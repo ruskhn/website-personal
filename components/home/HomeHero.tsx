@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useEffect, useRef } from "react"
 import { RESUME_PDF_FILENAME, RESUME_PDF_PATH } from "components/global-const"
 import { SignalField, type SignalFieldHandle } from "./SignalField"
 import { scrambleTo, splitChars } from "./textFx"
@@ -210,10 +210,10 @@ export function HomeHero() {
   return (
     <section
       ref={rootRef}
-      className="relative flex min-h-[100svh] w-full cursor-crosshair items-center justify-center overflow-hidden"
+      className="relative flex min-h-svh w-full cursor-crosshair items-center justify-center overflow-hidden"
     >
       {/* SVG liquid distortion (Codrops-style displacement) */}
-      <svg className="pointer-events-none absolute h-0 w-0" aria-hidden="true">
+      <svg className="pointer-events-none absolute size-0" aria-hidden="true">
         <defs>
           <filter id="hero-liquid" x="-20%" y="-20%" width="140%" height="140%">
             <feTurbulence

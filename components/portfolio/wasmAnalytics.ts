@@ -54,8 +54,8 @@ export function wasmAggregate(
 
   return {
     count,
-    sumSpend: view[0],
-    sumRetention: view[1],
+    sumSpend: view[0] ?? 0,
+    sumRetention: view[1] ?? 0,
     ms: performance.now() - t0,
   }
 }

@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import * as React from "react"
 import { RESUME_PDF_FILENAME, RESUME_PDF_PATH } from "components/global-const"
@@ -12,7 +13,7 @@ const Header = () => {
     <header className="fixed inset-x-0 top-0 z-50 w-full bg-slate-900/70 p-4 font-sans backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between">
         <Link href="/" className="flex items-center text-xl font-bold text-slate-300" aria-label="Home">
-          <img src="/images/logo.svg" alt="" className="mr-2 h-8 w-8" />
+          <Image src="/images/logo.svg" alt="" width={32} height={32} className="mr-2 size-8" />
         </Link>
 
         <nav className="flex items-center space-x-6" aria-label="Primary">

@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useMemo, useRef } from "react"
 import * as d3 from "d3"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useEffect, useMemo, useRef } from "react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -111,7 +111,7 @@ export function ImpactTopology() {
       .attr("stroke-width", 1.25)
 
     const nodeSel = gNodes
-      .selectAll("g")
+      .selectAll<SVGGElement, SimNode>("g")
       .data(nodes)
       .join("g")
       .attr("cursor", "grab")

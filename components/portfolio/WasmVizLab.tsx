@@ -1,18 +1,18 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react"
+import { type ReactNode, useCallback, useEffect, useMemo, useState } from "react"
+import { CODE_HYBRID, CODE_SLOW, CODE_WASM_RUST, CodeSample } from "./CodeSample"
+import { ScatterCanvas } from "./ScatterCanvas"
 import {
+  type AggregateResult,
   generateShoppers,
   packAggregateBuffer,
   packScatterBuffer,
+  type ScatterResult,
   slowAggregate,
   slowScatter,
-  type AggregateResult,
-  type ScatterResult,
 } from "./shopperData"
 import { loadAnalyticsWasm, wasmAggregate, wasmScatter } from "./wasmAnalytics"
-import { ScatterCanvas } from "./ScatterCanvas"
-import { CodeSample, CODE_HYBRID, CODE_SLOW, CODE_WASM_RUST } from "./CodeSample"
 
 const SIZES = [
   { label: "50K", value: 50_000 },

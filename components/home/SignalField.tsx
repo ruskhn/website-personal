@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useImperativeHandle, forwardRef, type MutableRefObject } from "react"
+import { forwardRef, type MutableRefObject, useEffect, useImperativeHandle, useRef } from "react"
 
 type Particle = {
   x: number
@@ -108,6 +108,7 @@ export const SignalField = forwardRef<SignalFieldHandle, SignalFieldProps>(funct
       grid.clear()
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i]
+        if (!p) continue
         const cx = (p.x / cellSize) | 0
         const cy = (p.y / cellSize) | 0
         const key = cellKey(cx, cy)
@@ -239,7 +240,9 @@ export const SignalField = forwardRef<SignalFieldHandle, SignalFieldProps>(funct
     }
 
     const io = new IntersectionObserver(
-      ([entry]) => {
+      (entries) => {
+        const entry = entries[0]
+        if (!entry) return
         visible = entry.isIntersecting && entry.intersectionRatio > 0.02
         syncRunState()
       },
@@ -289,7 +292,7 @@ export const SignalField = forwardRef<SignalFieldHandle, SignalFieldProps>(funct
   return (
     <canvas
       ref={canvasRef}
-      className={`pointer-events-none absolute inset-0 h-full w-full ${className}`}
+      className={`pointer-events-none absolute inset-0 size-full ${className}`}
       aria-hidden="true"
     />
   )
@@ -325,43 +328,42 @@ function drawFrame(
 
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i]
-    if (!staticOnly) {
-      p.pulse += 0.025
-      p.x += p.vx
-      p.y += p.vy
-      if (p.trail > 0) p.trail = Math.max(0, p.trail - 0.02)
+    if (!p || staticOnly) continue
+    p.pulse += 0.025
+    p.x += p.vx
+    p.y += p.vy
+    if (p.trail > 0) p.trail = Math.max(0, p.trail - 0.02)
 
-      if (p.x < 0 || p.x > width) p.vx *= -1
-      if (p.y < 0 || p.y > height) p.vy *= -1
-      p.x = p.x < 0 ? 0 : p.x > width ? width : p.x
-      p.y = p.y < 0 ? 0 : p.y > height ? height : p.y
+    if (p.x < 0 || p.x > width) p.vx *= -1
+    if (p.y < 0 || p.y > height) p.vy *= -1
+    p.x = p.x < 0 ? 0 : p.x > width ? width : p.x
+    p.y = p.y < 0 ? 0 : p.y > height ? height : p.y
 
-      if (mouseActive) {
-        const dx = mx - p.x
-        const dy = my - p.y
-        const distSq = dx * dx + dy * dy
-        if (distSq < mouseRangeSq && distSq > 0.01) {
-          const dist = Math.sqrt(distSq)
-          const f = ((220 - dist) / 220) * 0.08
-          p.vx += dx * f * 0.015 - dy * f * 0.012
-          p.vy += dy * f * 0.015 + dx * f * 0.012
-        }
+    if (mouseActive) {
+      const dx = mx - p.x
+      const dy = my - p.y
+      const distSq = dx * dx + dy * dy
+      if (distSq < mouseRangeSq && distSq > 0.01) {
+        const dist = Math.sqrt(distSq)
+        const f = ((220 - dist) / 220) * 0.08
+        p.vx += dx * f * 0.015 - dy * f * 0.012
+        p.vy += dy * f * 0.015 + dx * f * 0.012
       }
+    }
 
-      if (pull > 0.01) {
-        p.vx += (cx - p.x) * 0.003 * pull
-        p.vy += (cy - p.y) * 0.003 * pull
-      }
+    if (pull > 0.01) {
+      p.vx += (cx - p.x) * 0.003 * pull
+      p.vy += (cy - p.y) * 0.003 * pull
+    }
 
-      p.vx *= 0.985
-      p.vy *= 0.985
-      const speedSq = p.vx * p.vx + p.vy * p.vy
-      const maxSq = 4.2 * 4.2
-      if (speedSq > maxSq) {
-        const speed = Math.sqrt(speedSq)
-        p.vx = (p.vx / speed) * 4.2
-        p.vy = (p.vy / speed) * 4.2
-      }
+    p.vx *= 0.985
+    p.vy *= 0.985
+    const speedSq = p.vx * p.vx + p.vy * p.vy
+    const maxSq = 4.2 * 4.2
+    if (speedSq > maxSq) {
+      const speed = Math.sqrt(speedSq)
+      p.vx = (p.vx / speed) * 4.2
+      p.vy = (p.vy / speed) * 4.2
     }
   }
 
@@ -381,6 +383,7 @@ function drawFrame(
   const accent = new Path2D()
   for (let i = 0; i < particles.length; i++) {
     const a = particles[i]
+    if (!a) continue
     const acx = (a.x / cellSize) | 0
     const acy = (a.y / cellSize) | 0
     for (let ox = -1; ox <= 1; ox++) {
@@ -389,8 +392,9 @@ function drawFrame(
         if (!bucket) continue
         for (let b = 0; b < bucket.length; b++) {
           const j = bucket[b]
-          if (j <= i) continue
+          if (j === undefined || j <= i) continue
           const other = particles[j]
+          if (!other) continue
           const dx = a.x - other.x
           const dy = a.y - other.y
           const distSq = dx * dx + dy * dy
@@ -411,6 +415,7 @@ function drawFrame(
   // Nodes — skip expensive glow halos except accents / trails
   for (let i = 0; i < particles.length; i++) {
     const p = particles[i]
+    if (!p) continue
     const glow = 0.7 + Math.sin(p.pulse) * 0.3
     const size = p.r * (1 + pull * 0.4 + p.trail * 1.5)
     ctx.beginPath()

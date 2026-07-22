@@ -4,9 +4,9 @@ import { useCallback, useMemo, useRef, useState } from "react"
 import { CodeSample } from "./CodeSample"
 import {
   hybridSuggest,
+  type KeywordSuggestion,
   naiveLlmSuggest,
   streamBatches,
-  type KeywordSuggestion,
 } from "./keywordEngine"
 
 const SEEDS = ["running shoes", "wireless earbuds", "protein powder", "office chair"] as const
@@ -250,15 +250,15 @@ export function LlmKeywordLab() {
               <col />
               <col className="w-[5.5rem]" />
               <col className="w-[4.5rem]" />
-              <col className="w-[4rem]" />
+              <col className="w-16" />
               <col className="w-[8.5rem]" />
             </colgroup>
             <thead className="sticky top-0 bg-[#0a0a0a] text-xs uppercase tracking-wider text-slate-500">
               <tr>
                 <th className="px-4 py-2 font-medium">Keyword</th>
-                <th className="px-2 py-2 font-medium">CTR est.</th>
-                <th className="px-2 py-2 font-medium">Conf.</th>
-                <th className="px-2 py-2 font-medium">Flag</th>
+                <th className="p-2 font-medium">CTR est.</th>
+                <th className="p-2 font-medium">Conf.</th>
+                <th className="p-2 font-medium">Flag</th>
                 <th className="px-4 py-2 font-medium">Action</th>
               </tr>
             </thead>
@@ -284,13 +284,13 @@ export function LlmKeywordLab() {
                     <td className="truncate px-4 py-2 font-mono text-xs text-slate-200 sm:text-sm" title={r.text}>
                       {r.text}
                     </td>
-                    <td className="whitespace-nowrap px-2 py-2 font-mono text-xs text-slate-400">
+                    <td className="whitespace-nowrap p-2 font-mono text-xs text-slate-400">
                       {r.estimatedCTR.toFixed(2)}%
                     </td>
-                    <td className="whitespace-nowrap px-2 py-2 font-mono text-xs text-slate-400">
+                    <td className="whitespace-nowrap p-2 font-mono text-xs text-slate-400">
                       {(r.confidence * 100).toFixed(0)}%
                     </td>
-                    <td className="whitespace-nowrap px-2 py-2">
+                    <td className="whitespace-nowrap p-2">
                       {r.commerciallyRelevant ? (
                         <span className="text-xs text-green-100">ok</span>
                       ) : (

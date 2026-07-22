@@ -1,8 +1,8 @@
 "use client"
 
+import { CareerPath } from "./CareerPath"
 import { HomeHero } from "./HomeHero"
 import { ImpactTopology } from "./ImpactTopology"
-import { CareerPath } from "./CareerPath"
 import { MagneticOrb } from "./MagneticOrb"
 
 export function HomeExperience() {

@@ -1,6 +1,7 @@
 import "styles/tailwind.css"
-import Header from "components/Header"
 import { Montserrat } from "@next/font/google"
+import Image from "next/image"
+import Header from "components/Header"
 
 const BackgroundEffects: React.FC = () => {
   return (
@@ -10,19 +11,17 @@ const BackgroundEffects: React.FC = () => {
         aria-hidden="true"
       >
         <div className="translate-z-0 absolute inset-0 rounded-full bg-purple-500 opacity-30 blur-[120px]"></div>
-        <div className="translate-z-0 absolute h-64 w-64 rounded-full bg-purple-400 opacity-70 blur-[80px]"></div>
+        <div className="translate-z-0 absolute size-64 rounded-full bg-purple-400 opacity-70 blur-[80px]"></div>
       </div>
       <div
         className="pointer-events-none absolute left-1/2 -z-10 -mt-16 -translate-x-1/2 opacity-90 blur-2xl md:block"
         aria-hidden="true"
       >
-        <img
+        <Image
           alt="Page Illustration"
           loading="lazy"
-          width="1440"
-          height="427"
-          decoding="async"
-          data-nimg="1"
+          width={1440}
+          height={427}
           className="max-w-none"
           style={{ color: "transparent" }}
           src="/images/page-illustration-tri.svg"

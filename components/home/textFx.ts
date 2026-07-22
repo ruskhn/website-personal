@@ -31,7 +31,7 @@ export function scrambleTo(
           out += ch
           continue
         }
-        out += i < revealCount ? ch : chars[Math.floor(Math.random() * chars.length)]
+        out += i < revealCount ? ch : chars[Math.floor(Math.random() * chars.length)] ?? "X"
       }
       el.textContent = out
     },
@@ -48,7 +48,7 @@ export function splitChars(el: HTMLElement) {
   el.innerHTML = ""
   const chars: HTMLSpanElement[] = []
 
-  ;[...text].forEach((ch) => {
+  Array.from(text).forEach((ch) => {
     const span = document.createElement("span")
     span.className = "hero-char inline-block will-change-transform"
     span.setAttribute("aria-hidden", "true")

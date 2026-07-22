@@ -1,8 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { WasmVizLab } from "./WasmVizLab"
 import { LlmKeywordLab } from "./LlmKeywordLab"
+import { WasmVizLab } from "./WasmVizLab"
 
 export function PortfolioExperience() {
   return (

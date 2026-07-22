@@ -120,10 +120,11 @@ export function naiveLlmSuggest(seed: string, total = 48): {
   const rand = mulberry(hashStr(seed + ":naive"))
   const creative = expandSemantic(seed, rand, total)
 
-  // Inject drift (pure-LLM failure mode from the Drive story)
+  // Inject drift (pure-LLM failure mode)
   const driftCount = Math.max(6, Math.floor(total * 0.28))
   for (let i = 0; i < driftCount; i++) {
-    creative[(rand() * creative.length) | 0] = LLM_DRIFT[(rand() * LLM_DRIFT.length) | 0]
+    const idx = (rand() * creative.length) | 0
+    creative[idx] = LLM_DRIFT[(rand() * LLM_DRIFT.length) | 0] ?? LLM_DRIFT[0]!
   }
 
   const suggestions = creative.map((text, i) => {

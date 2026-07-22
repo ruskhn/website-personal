@@ -66,8 +66,8 @@ export function ScatterCanvas({ points, count, accent = "#BFFF10", dim = false }
     let minY = Infinity
     let maxY = -Infinity
     for (let i = 0; i < count; i++) {
-      const x = points[i * 2]
-      const y = points[i * 2 + 1]
+      const x = points[i * 2] ?? 0
+      const y = points[i * 2 + 1] ?? 0
       if (x < minX) minX = x
       if (x > maxX) maxX = x
       if (y < minY) minY = y
@@ -84,15 +84,17 @@ export function ScatterCanvas({ points, count, accent = "#BFFF10", dim = false }
     // Subsample draw if huge
     const step = count > 12000 ? Math.ceil(count / 12000) : 1
     for (let i = 0; i < count; i += step) {
-      const x = pad + ((points[i * 2] - minX) / (maxX - minX)) * plotW
-      const y = h - pad - ((points[i * 2 + 1] - minY) / (maxY - minY)) * plotH
+      const px = points[i * 2] ?? 0
+      const py = points[i * 2 + 1] ?? 0
+      const x = pad + ((px - minX) / (maxX - minX)) * plotW
+      const y = h - pad - ((py - minY) / (maxY - minY)) * plotH
       ctx.beginPath()
       ctx.arc(x, y, dim ? 1.1 : 1.35, 0, Math.PI * 2)
       ctx.fill()
     }
   }, [points, count, accent, dim])
 
-  return <canvas ref={ref} className="h-full w-full" aria-label="Shopper scatter plot" />
+  return <canvas ref={ref} className="size-full" aria-label="Shopper scatter plot" />
 }
 
 function hexToRgba(hex: string, a: number) {

@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useEffect, useRef } from "react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -169,7 +169,7 @@ export function CareerPath() {
                   >
                     {chapter.highlights.map((h) => (
                       <li key={h} className="flex gap-2 md:justify-start">
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green-100/70" />
+                        <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-green-100/70" />
                         <span className={left ? "md:text-right" : ""}>{h}</span>
                       </li>
                     ))}
@@ -178,7 +178,7 @@ export function CareerPath() {
 
                 <div
                   data-dot
-                  className="absolute left-1/2 top-8 z-10 hidden h-4 w-4 -translate-x-1/2 rounded-full border-2 border-green-100 bg-slate-900 shadow-[0_0_20px_rgba(191,255,16,0.45)] md:block"
+                  className="absolute left-1/2 top-8 z-10 hidden size-4 -translate-x-1/2 rounded-full border-2 border-green-100 bg-slate-900 shadow-[0_0_20px_rgba(191,255,16,0.45)] md:block"
                   aria-hidden="true"
                 />
               </li>

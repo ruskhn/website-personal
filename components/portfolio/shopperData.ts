@@ -40,8 +40,8 @@ export function generateShoppers(n: number, seed = 42): ShopperPoint[] {
     const retention = Math.min(0.98, 0.15 + spend / 3200 + (rand() - 0.5) * 0.25)
     out[i] = {
       id: i,
-      retailer: RETAILERS[(rand() * RETAILERS.length) | 0],
-      channel: CHANNELS[(rand() * CHANNELS.length) | 0],
+      retailer: RETAILERS[(rand() * RETAILERS.length) | 0] ?? "Amazon",
+      channel: CHANNELS[(rand() * CHANNELS.length) | 0] ?? "Online",
       spend,
       retention,
       x: spend,
@@ -55,8 +55,10 @@ export function generateShoppers(n: number, seed = 42): ShopperPoint[] {
 export function packAggregateBuffer(rows: ShopperPoint[]): Float64Array {
   const buf = new Float64Array(rows.length * 2)
   for (let i = 0; i < rows.length; i++) {
-    buf[i * 2] = rows[i].spend
-    buf[i * 2 + 1] = rows[i].retention
+    const row = rows[i]
+    if (!row) continue
+    buf[i * 2] = row.spend
+    buf[i * 2 + 1] = row.retention
   }
   return buf
 }
@@ -66,6 +68,7 @@ export function packScatterBuffer(rows: ShopperPoint[]): Float64Array {
   const buf = new Float64Array(rows.length * 3)
   for (let i = 0; i < rows.length; i++) {
     const r = rows[i]
+    if (!r) continue
     buf[i * 3] = r.x
     buf[i * 3 + 1] = r.y
     buf[i * 3 + 2] = r.spend
@@ -93,6 +96,7 @@ export function slowAggregate(rows: ShopperPoint[], threshold: number): Aggregat
     sumRetention = 0
     for (let i = 0; i < rows.length; i++) {
       const row = rows[i]
+      if (!row) continue
       const label = row.retailer + ":" + row.channel
       if (row.spend >= threshold && label.length > 3) {
         count++
@@ -120,6 +124,7 @@ export function slowScatter(rows: ShopperPoint[], threshold: number): ScatterRes
   const kept: number[] = []
   for (let i = 0; i < rows.length; i++) {
     const r = rows[i]
+    if (!r) continue
     if (r.spend >= threshold) {
       kept.push(r.x, r.y)
     }

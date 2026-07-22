@@ -1,7 +1,7 @@
 "use client"
 
-import { useEffect, useRef } from "react"
 import gsap from "gsap"
+import { useEffect, useRef } from "react"
 
 /** Lime magnetic cursor with trailing ring pulses — Trionn-style presence. */
 export function MagneticOrb() {
@@ -72,12 +72,12 @@ export function MagneticOrb() {
     <>
       <div
         ref={ringRef}
-        className="pointer-events-none fixed left-0 top-0 z-[60] hidden h-12 w-12 rounded-full border border-green-100/50 md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[60] hidden size-12 rounded-full border border-green-100/50 md:block"
         aria-hidden="true"
       />
       <div
         ref={orbRef}
-        className="pointer-events-none fixed left-0 top-0 z-[60] hidden h-3 w-3 rounded-full bg-green-100 shadow-[0_0_24px_rgba(191,255,16,0.85)] mix-blend-screen md:block"
+        className="pointer-events-none fixed left-0 top-0 z-[60] hidden size-3 rounded-full bg-green-100 shadow-[0_0_24px_rgba(191,255,16,0.85)] mix-blend-screen md:block"
         aria-hidden="true"
       />
     </>
