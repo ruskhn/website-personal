@@ -1,5 +1,6 @@
 import "styles/tailwind.css"
 import { Montserrat } from "@next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import Image from "next/image"
 import Header from "components/Header"
 
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </section>
           </main>
         </div>
+        <Analytics />
       </body>
     </html>
   )
