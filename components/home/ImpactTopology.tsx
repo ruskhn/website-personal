@@ -196,8 +196,9 @@ export function ImpactTopology() {
         scrollTrigger: { trigger: section, start: "top 75%" },
       })
 
-      // Topology densifies; metric cards reveal on scroll
+      // Topology densifies lightly; cards reveal on scroll (no sim restart every frame)
       gsap.set(cardsEl, { opacity: 0, y: 36 })
+      let lastCharge = -280
       ScrollTrigger.create({
         trigger: section,
         start: "top 55%",
@@ -205,8 +206,13 @@ export function ImpactTopology() {
         scrub: true,
         onUpdate: (self) => {
           const p = self.progress
-          simulation.force("charge", d3.forceManyBody().strength(-280 + p * 180))
-          simulation.alpha(0.25).restart()
+          const nextCharge = -280 + p * 180
+          // Only nudge the force when charge meaningfully changes
+          if (Math.abs(nextCharge - lastCharge) > 12) {
+            lastCharge = nextCharge
+            simulation.force("charge", d3.forceManyBody().strength(nextCharge))
+            if (simulation.alpha() < 0.12) simulation.alpha(0.12).restart()
+          }
           gsap.set(svg, { opacity: 1 - p * 0.55, scale: 1 - p * 0.06 })
           gsap.set(cardsEl, { opacity: Math.min(1, p * 1.6), y: (1 - Math.min(1, p * 1.6)) * 36 })
           if (p > 0.25) runCounters()
@@ -220,29 +226,39 @@ export function ImpactTopology() {
         onEnter: runCounters,
       })
 
-      if (!reducedMotion) {
-        gsap.to(".pulse-core", {
-          attr: { r: (i, el) => Number(d3.select(el).attr("r")) * 1.6 },
-          opacity: 0.15,
-          duration: 1.6,
-          repeat: -1,
-          yoyo: true,
-          stagger: 0.2,
-          ease: "sine.inOut",
-        })
-      }
+      // Pause force layout when section leaves the viewport
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        onEnter: () => {
+          if (simulation.alpha() < 0.05) simulation.alpha(0.08).restart()
+        },
+        onLeave: () => simulation.stop(),
+        onEnterBack: () => simulation.alpha(0.08).restart(),
+        onLeaveBack: () => simulation.stop(),
+      })
+
+      // Settle quickly — no infinite pulse tweens
+      simulation.alphaDecay(0.04)
+      simulation.on("end", () => simulation.stop())
     }, section)
 
+    let resizeTimer = 0
     const onResize = () => {
-      ;({ width, height } = measure())
-      root.attr("viewBox", `0 0 ${width} ${height}`)
-      simulation.force("center", d3.forceCenter(width / 2, height / 2))
-      simulation.alpha(0.5).restart()
+      window.clearTimeout(resizeTimer)
+      resizeTimer = window.setTimeout(() => {
+        ;({ width, height } = measure())
+        root.attr("viewBox", `0 0 ${width} ${height}`)
+        simulation.force("center", d3.forceCenter(width / 2, height / 2))
+        simulation.alpha(0.35).restart()
+      }, 150)
     }
-    window.addEventListener("resize", onResize)
+    window.addEventListener("resize", onResize, { passive: true })
 
     return () => {
       simulation.stop()
+      window.clearTimeout(resizeTimer)
       window.removeEventListener("resize", onResize)
       ctx.revert()
     }
@@ -280,7 +296,7 @@ export function ImpactTopology() {
         {METRICS.map((m) => (
           <article
             key={m.id}
-            className="min-h-[140px] content-center rounded-def border border-slate-800/80 bg-[#111111]/90 px-4 py-5 text-center backdrop-blur-sm"
+            className="min-h-[140px] content-center rounded-def border border-slate-800/80 bg-[#111111] px-4 py-5 text-center"
           >
             <p
               className="mb-3 text-3xl text-green-100 md:text-4xl"
