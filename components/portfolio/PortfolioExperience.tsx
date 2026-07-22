@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { WasmVizLab } from "./WasmVizLab"
+import { LlmKeywordLab } from "./LlmKeywordLab"
 
 export function PortfolioExperience() {
   return (
@@ -14,12 +15,30 @@ export function PortfolioExperience() {
           Systems you can feel — not just screenshots.
         </h1>
         <p className="mt-4 text-slate-400">
-          Interactive labs and shipped products. Start with the WASM shopper-analytics race inspired
-          by Stackline, then MapTask.
+          Interactive labs from Stackline systems work — WASM shopper analytics, hybrid LLM keyword
+          generation — plus MapTask.
         </p>
+        <div className="mt-6 flex flex-wrap gap-3 text-sm">
+          <a
+            href="#wasm-lab"
+            className="rounded-full border border-slate-700 px-4 py-2 text-slate-300 hover:border-green-100/40 hover:text-green-100"
+          >
+            WASM race
+          </a>
+          <a
+            href="#llm-lab"
+            className="rounded-full border border-slate-700 px-4 py-2 text-slate-300 hover:border-green-100/40 hover:text-green-100"
+          >
+            LLM workbench
+          </a>
+        </div>
       </header>
 
-      <WasmVizLab />
+      <div id="wasm-lab">
+        <WasmVizLab />
+      </div>
+
+      <LlmKeywordLab />
 
       <section className="space-y-6 border-t border-slate-800 pt-16">
         <div className="max-w-3xl">
