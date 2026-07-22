@@ -28,9 +28,9 @@ const Portfolio = () => {
                 <path
                   d="M23.75 15L6.25 15M23.75 15L16.25 22.5M23.75 15L16.25 7.5"
                   stroke="#cbd5e1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   className="group-hover:stroke-white"
                 />
               </svg>

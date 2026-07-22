@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { RESUME_PDF_FILENAME, RESUME_PDF_PATH } from "components/global-const"
 import { SignalField } from "./SignalField"
 
 gsap.registerPlugin(ScrollTrigger)
@@ -24,8 +25,8 @@ export function HomeHero() {
 
       tl.fromTo(
         titleRef.current,
-        { y: 48, opacity: 0, filter: "blur(8px)" },
-        { y: 0, opacity: 1, filter: "blur(0px)", duration: 1.1 }
+        { y: 48, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.1, clearProps: "filter" }
       )
         .fromTo(
           roleRef.current,
@@ -114,10 +115,11 @@ export function HomeHero() {
             See the impact
           </a>
           <a
-            href="/resume"
+            href={RESUME_PDF_PATH}
+            download={RESUME_PDF_FILENAME}
             className="rounded-full border border-slate-600 px-6 py-3 text-sm font-medium text-slate-300 transition hover:border-slate-400 hover:text-white"
           >
-            View resume
+            Download resume
           </a>
         </div>
       </div>
