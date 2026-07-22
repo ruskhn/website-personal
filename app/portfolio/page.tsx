@@ -12,7 +12,7 @@ const PROJECTS = [
 
 const Portfolio = () => {
   return (
-    <div>
+    <div className="mx-auto max-w-screen-lg">
       {PROJECTS.map(({ title, description, url, src }, idx) => (
         <div key={title} className="flex h-screen w-full flex-col p-4">
           {/* Header */}

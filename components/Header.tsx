@@ -20,17 +20,17 @@ const Header = () => {
               displayName: "Home",
             },
             {
-              to: "Resume",
+              to: "resume",
               displayName: "Resume",
             },
             {
-              to: "Portfolio",
+              to: "portfolio",
               displayName: "Portfolio",
             },
           ].map((item) => (
             <Link
               key={item.displayName}
-              href={`/${item.to}`}
+              href={item.to === "/" ? "/" : `/${item.to}`}
               className="text-sm font-medium text-slate-300 transition duration-150 ease-in-out hover:text-white"
             >
               {item.displayName}

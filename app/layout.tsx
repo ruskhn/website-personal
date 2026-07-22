@@ -49,8 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="grow">
             <section className="relative">
               <BackgroundEffects />
-              <div style={{ marginBottom: 64 }} />
-              <div className="border-1 mx-auto max-w-screen-lg border-white p-4">{children}</div>
+              <div className="pt-16">{children}</div>
             </section>
           </main>
         </div>

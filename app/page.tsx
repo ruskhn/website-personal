@@ -1,10 +1,8 @@
 import { Metadata } from "next"
-import SquareGrid from "components/SquareGrid/SquareGrid"
-import { MyTimeline } from "components/MyTimeline/MyTimeline"
-import { Montserrat } from "@next/font/google"
+import { HomeExperience } from "components/home/HomeExperience"
 
 export const metadata: Metadata = {
-  title: "Rus Walten Home Page",
+  title: "Rus — Full Stack Engineer",
   twitter: {
     card: "summary_large_image",
   },
@@ -21,19 +19,5 @@ export const metadata: Metadata = {
 }
 
 export default function Web() {
-  return <Main />
-}
-
-const Main: React.FC = () => {
-  return (
-    <section className={`border-1 mx-auto max-w-screen-lg border-white p-4 text-white`}>
-      <h5 className="mb-3 text-center text-6xl">{`Hi I'm Rus`}</h5>
-      <p className="mb-10 text-center text-5xl text-green-100">Full Stack Engineer</p>
-
-      {/* 4 blocks */}
-      <SquareGrid />
-
-      <MyTimeline />
-    </section>
-  )
+  return <HomeExperience />
 }

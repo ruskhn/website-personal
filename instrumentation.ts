@@ -1,5 +1,3 @@
-import { registerOTel } from "@vercel/otel"
-
 export function register() {
-  registerOTel("next-app")
+  // OpenTelemetry disabled locally — @vercel/otel/jaeger thrift asset breaks Next 14 vendor chunks.
 }
